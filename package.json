@@ -4,18 +4,20 @@
   "description": "Example how to combine PWA with isomorphic rendering",
   "main": "server.js",
   "scripts": {
-    "start": "./node_modules/webpack/bin/webpack.js -w",
-    "build": "./node_modules/webpack/bin/webpack.js -p"
+    "build": "webpack --mode=production",
+    "start": "webpack-dev-server --open --mode=development"
   },
   "author": "Michal Janaszek",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "express": "^4.16.2",
     "faker": "^4.1.0",
-    "webpack": "^3.8.1",
-    "webpack-node-externals": "^1.6.0"
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-node-externals": "^1.7.2"
   }
 }
