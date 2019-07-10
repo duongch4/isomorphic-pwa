@@ -7,8 +7,10 @@ self.addEventListener('install', event => {
     )
 });
 
+// Cache, falling back to network
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request))
-    );
+    event.respondWith(async () => {
+        const response = await caches.match(event.request);
+        return response || fetch(event.request);
+    });
 });
