@@ -1,9 +1,9 @@
 const CACHE_NAME = 'cache-token';
 const staticUrlsToCache = ['/style.css', '/script.js', '/logo.png'];
-const shellUrlsToCache = ['/'];
+const baseUrls = ['/'];
 const urlsToCache = [
     ...staticUrlsToCache,
-    shellUrlsToCache.map(url => `${url}?shell`),
+    baseUrls.map(url => `${url}?shell`),
 ];
 
 self.addEventListener('install', event => {
@@ -15,9 +15,9 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
     let request = event.request;
 
-    const shellUrl = shellUrlsToCache.find(url => request.url.endsWith(url));
-    if (shellUrl) {
-        request = new Request(`${shellUrl}?shell`);
+    const baseUrl = baseUrls.find(url => request.url.endsWith(url));
+    if (baseUrl) {
+        request = new Request(`${baseUrl}?shell`);
     }
 
     event.respondWith(
